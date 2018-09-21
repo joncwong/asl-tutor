@@ -12,7 +12,9 @@ ASL Tutor was developed on:
 [Flask-restful v0.3.6](https://flask-restful.readthedocs.io/en/latest/installation.html)
 
 `$ conda install pytorch torchvision -c pytorch`
+
 `$ pip install Flask`
+
 `$ pip install flask-restful`
 
 ## Folder Structure
