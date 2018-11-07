@@ -13,6 +13,38 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <style>
+      
+  .video-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#video-container {
+  position: relative;
+}
+
+#video-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+#video-container .caption {
+  position: absolute;
+  bottom: 0px;
+  height: 40px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
   body {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
@@ -32,16 +64,7 @@
       font-weight: 400;
       margin-bottom: 30px;
   }
-  #container {
-      margin: 0px auto;
-      width: 500px;
-      height: 375px;
-  }
-  #videoElement {
-      width: 500px;
-      height: 375px;
-      background-color: #666;
-  }
+
   .jumbotron {
       background-color: #001f3f;
       color: #fff;
@@ -245,23 +268,16 @@
   <h2>LEARN</h2>
   <h4>Make sure to allow your browser to access your webcam</h4>
   <br>
-  <div id="container">
-    <video autoplay="true" id="videoElement"></video>
-  </div>
+    <div class="video-wrap">
+    <div id="video-container">
+      <canvas width="640" height="480"></canvas>
+      <video autoplay width="640" height="480"></video>
+      <span class="caption">?</span>
+    </div>
 </div>
-    <script>
-      var video = document.querySelector("#videoElement");
- 
-      if (navigator.mediaDevices.getUserMedia) {       
-        navigator.mediaDevices.getUserMedia({video: true})
-    .then(function(stream) {
-        video.srcObject = stream;
-    })
-    .catch(function(err0r) {
-        console.log("Sorry, something went wrong");
-    });
-      }      
-    </script>
+    <script src="./cam.js"></script>
+</div>
+    
 
 <!-- Container (Gameify Section) -->
 <div id="gameify" class="container-fluid text-center bg-grey">
