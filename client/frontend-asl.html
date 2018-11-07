@@ -32,6 +32,17 @@
       font-weight: 400;
       margin-bottom: 30px;
   }
+  #container {
+      margin: 0px auto;
+      width: 500px;
+      height: 375px;
+      border: 10px #333 solid;
+  }
+  #videoElement {
+      width: 500px;
+      height: 375px;
+      background-color: #666;
+  }
   .jumbotron {
       background-color: #001f3f;
       color: #fff;
@@ -241,7 +252,22 @@
   <h2>LEARN</h2>
   <h4>Make sure to allow your browser to access your webcam</h4>
   <br>
-  <!-- javascript for webcam access will go here -->
+  <div id="container">
+    <video autoplay="true" id="videoElement"></video>
+  </div>
+  <script>
+      var video = document.querySelector("#videoElement");
+ 
+      if (navigator.mediaDevices.getUserMedia) {       
+        navigator.mediaDevices.getUserMedia({video: true})
+    .then(function(stream) {
+        video.srcObject = stream;
+    })
+    .catch(function(err0r) {
+        console.log("Sorry, something went wrong");
+    });
+      }      
+    </script>
 </div>
 
 <!-- Container (Gameify Section) -->
