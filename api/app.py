@@ -17,8 +17,10 @@ class HelloWorld(Resource):
 class Prediction(Resource):
     def post(self):
         image = request.files['file']
-        prediction = model.predict(image)
-        return {'result': prediction}
+        print(type(image))
+        #prediction = model.predict(image)
+        #return {'result': prediction}
+        return "I got image"
 
 api.add_resource(HelloWorld, '/')
 api.add_resource(Prediction, '/predict')
