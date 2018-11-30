@@ -29,7 +29,7 @@
     ctx.clearRect(0, 0, canvas.width, c.height);
   }
 
-  function drawRect(canvas, x, y, width, height, color = "#FF0000") {
+  function drawRect(canvas, x, y, width, height, color = "#000080") {
     const ctx = canvas.getContext("2d");
 
     ctx.beginPath();
@@ -52,7 +52,7 @@
      */
     const state = {
       predictionLoop: undefined,
-      captionText: "?"
+      captionText: "Prediction from input here"
     };
 
     const setCaptionText = text => {
@@ -70,7 +70,7 @@
           .catch(() => {
             stopPredictionLoop();
           });
-      }, 200);
+      }, 1000);
     };
 
     const stopPredictionLoop = () => {
@@ -88,6 +88,8 @@
 
           // configure a fake presentation for demo purposes
           if (env === "demo") {
+              drawRect(canvas, 200, 250, 230, 170);
+              setCaptionText("Prediction from input here");
           } else {
             startPredictionLoop();
           }
