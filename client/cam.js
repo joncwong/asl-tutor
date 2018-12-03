@@ -45,7 +45,8 @@
    * Main app things
    */
   function App() {
-    const videoElem = document.querySelector("#video-container video");
+    const videoElem = document.querySelector
+    ("#video-container video");
     const captionElem = document.querySelector(".caption");
     const canvas = document.querySelector("#video-container > canvas");
 
@@ -69,6 +70,7 @@
           .then(data => {
             clearCanvas(canvas);
             setCaptionText(data.prediction);
+            captionElem.textContent = state.captionText;
           })
           .catch(() => {
             stopPredictionLoop();
