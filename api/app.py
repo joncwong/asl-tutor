@@ -16,7 +16,7 @@ class HelloWorld(Resource):
 
 class Prediction(Resource):
     def post(self):
-        image = request.files['file']
+        image = request.form['image']
         print(type(image))
         #prediction = model.predict(image)
         #return {'result': prediction}

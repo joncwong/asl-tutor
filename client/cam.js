@@ -1,5 +1,5 @@
 (env => {
-  const ML_API_URL = "Your local machine ";
+  const ML_API_URL = "http://127.0.0.1:5000/predict";
 
   navigator.getUserMedia =
     navigator.getUserMedia ||
@@ -10,9 +10,10 @@
   function getPrediction(imageDataUrl) {
     var formData = new FormData();
     formData.append("image", imageDataUrl)
-    return fetch(`${ML_API_URL + "api path here"}`, {
+    return fetch(`${ML_API_URL}`, {
       method: "POST",
-      body: formData
+      body: formData,
+      mode: "no-cors"
     })
       .then(res => {
         return res.json();
