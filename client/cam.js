@@ -69,7 +69,7 @@
         getPrediction(imageDataUrl)
           .then(data => {
             clearCanvas(canvas);
-            setCaptionText(data.prediction);
+            state.captionText = data.prediction;
             captionElem.textContent = state.captionText;
           })
           .catch(() => {
