@@ -8,9 +8,11 @@
     navigator.msGetUserMedia;
 
   function getPrediction(imageDataUrl) {
+    var formData = new FormData();
+    formData.append("image", imageDataUrl)
     return fetch(`${ML_API_URL + "api path here"}`, {
       method: "POST",
-      body: imageDataUrl
+      body: formData
     })
       .then(res => {
         return res.json();
