@@ -39,6 +39,8 @@
     ctx.lineWidth = 2;
     ctx.strokeStyle = color;
     ctx.strokeRect(x, y, width, height);
+    ctx.translate(w, 0);
+    ctx.scale(-1, 1);
   }
 
   /**
