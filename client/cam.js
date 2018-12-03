@@ -1,5 +1,5 @@
 (env => {
-  const ML_API_URL = "???";
+  const ML_API_URL = "Your local machine ";
 
   navigator.getUserMedia =
     navigator.getUserMedia ||
@@ -8,7 +8,7 @@
     navigator.msGetUserMedia;
 
   function getPrediction(imageDataUrl) {
-    return fetch(`${ML_API_URL}`, {
+    return fetch(`${ML_API_URL + "api path here"}`, {
       method: "POST",
       body: imageDataUrl
     })
@@ -66,11 +66,12 @@
         getPrediction(imageDataUrl)
           .then(data => {
             clearCanvas(canvas);
+            setCaptionText(data.prediction);
           })
           .catch(() => {
             stopPredictionLoop();
           });
-      }, 1000);
+      }, 200);
     };
 
     const stopPredictionLoop = () => {
@@ -105,4 +106,4 @@
 
   const app = App();
   app.initialise();
-})("demo");
+})
