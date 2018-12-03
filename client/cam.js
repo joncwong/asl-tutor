@@ -106,4 +106,4 @@
 
   const app = App();
   app.initialise();
-})
+})("run");
