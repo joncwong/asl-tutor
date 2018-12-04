@@ -26,7 +26,8 @@ def show_webcam(mirror=False):
 
             np_img = np.fromstring(image_data, np.uint8)
             img_cropped = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
-            img_arr = cv2.resize(img, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)
+            img_arr = cv2.resize(img_cropped, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)
+            print(img_arr.shape)
             #img_arr = image.img_to_array(img)
             x = np.expand_dims(img_arr, axis=0)
             x = preprocess_input(x)
