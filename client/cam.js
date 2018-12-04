@@ -1,5 +1,5 @@
 (env => {
-  const ML_API_URL = "Your local machine ";
+  const ML_API_URL = "http://127.0.0.1:5000";
 
   navigator.getUserMedia =
     navigator.getUserMedia ||
@@ -8,22 +8,26 @@
     navigator.msGetUserMedia;
 
   function getPrediction(imageDataUrl) {
-    var formData = new FormData();
-    formData.append("image", imageDataUrl)
-    return fetch(`${ML_API_URL + "api path here"}`, {
+    //var formData = new FormData();
+    //formData.append("image", imageDataUrl)
+    return fetch(`${ML_API_URL}/yo`, {
       method: "POST",
-      body: formData
+      body: imageDataUrl
     })
       .then(res => {
+        console.log(res);
         return res.json();
       })
       .then(data => {
+        console.log(data);
         return data;
       });
   }
 
   function captureVideoFrame(canvas) {
-    return canvas.toDataURL("image/jpeg");
+    var canvascontent = canvas.toDataURL("image/jpeg");
+    var data = {image: canvascontent};
+    return JSON.stringify(data);
   }
 
   function clearCanvas(canvas) {
@@ -47,8 +51,7 @@
    * Main app things
    */
   function App() {
-    const videoElem = document.querySelector
-    ("#video-container video");
+    const videoElem = document.querySelector("#video-container video");
     const captionElem = document.querySelector(".caption");
     const canvas = document.querySelector("#video-container > canvas");
 
@@ -70,13 +73,8 @@
         const imageDataUrl = captureVideoFrame(canvas);
         getPrediction(imageDataUrl)
           .then(data => {
-            clearCanvas(canvas);
-            state.captionText = data.prediction;
-            captionElem.textContent = state.captionText;
+            setCaptionText(data.prediction);
           })
-          .catch(() => {
-            stopPredictionLoop();
-          });
       }, 200);
     };
 
