@@ -40,12 +40,7 @@ def predict(image_data):
             max_score = score
             res = human_string
     return res
-
-with tf.gfile.FastGFile("demo/trained_graph.pb", 'rb') as f:
-    graph_def = tf.GraphDef()
-    graph_def.ParseFromString(f.read())
-    _ = tf.import_graph_def(graph_def, name='')
-
+    
 class HelloWorld(Resource):
     def get(self):
         return {'hello': 'world'}

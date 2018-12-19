@@ -10,7 +10,7 @@ from keras.models import load_model
 char = ['a','b','c','d','e','f','g','h','i','j','k','l',
                'm','n','o','p','q','r','s','t','u','v','w','x','y','z', 'nothing', 'nothing', 'nothing']
 def show_webcam(mirror=False):
-    model = load_model('modelv2.h5')
+    model = load_model('models/modelv2.h5')
     cam = cv2.VideoCapture(0)
     res, score = '', 0.0
     while True:
@@ -26,8 +26,7 @@ def show_webcam(mirror=False):
 
             np_img = np.fromstring(image_data, np.uint8)
             img_cropped = cv2.imdecode(np_img, cv2.IMREAD_COLOR)
-            img_arr = cv2.resize(img_cropped, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)
-            print(img_arr.shape)
+            img_arr = cv2.resize(img, dsize=(64, 64), interpolation=cv2.INTER_CUBIC)
             #img_arr = image.img_to_array(img)
             x = np.expand_dims(img_arr, axis=0)
             x = preprocess_input(x)
@@ -45,8 +44,7 @@ def show_webcam(mirror=False):
             break  # esc to quit
 
     cv2.destroyAllWindows()
-
-
+    
 def main():
     show_webcam(mirror=True)
 
